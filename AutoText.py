@@ -3,6 +3,8 @@ from time import sleep
 import pandas as pd
 import re
 
+
+#Applescript code for sending via iMessage
 scpt_imessage = applescript.AppleScript('''
     on run {targetBuddy, targetMessage}
         
@@ -14,6 +16,7 @@ scpt_imessage = applescript.AppleScript('''
     end run
 ''')
 
+#Applescript code for sending via SMS
 scpt_SMS = applescript.AppleScript('''
     on run {targetBuddy, targetMessage}
         
@@ -28,23 +31,24 @@ scpt_SMS = applescript.AppleScript('''
 
 def messageSend():
     
-    readFile = pd.read_csv('TextBlast_2.csv')
+    #Open the .csv file
+    readFile = pd.read_csv('csvWithPhoneAndMessage.csv')
 
     #read the 'Phone' column into a pandas series
     phones = pd.Series(readFile.Phone)
     #read the 'Message' column into a pandas series
     messages = pd.Series(readFile.Message)
 
-    #initialize counter
-    count = 827
+    #initialize counter to 0
+    count = 0
 
     #loop through the .csv file, send a message to each phone number
-    for x in range(count, 900):
+    for x in range(count, phones.size):
         phone = str(phones.iloc[x])
         message = messages.iloc[x]
 
         #send the message
-        print(scpt_SMS.run(phone, message)) #-> None
+        scpt_SMS.run(phone, message)
         
         #pause execution while message is attempting to send
         sleep(120)
