@@ -1,4 +1,4 @@
-**Note**
+**Note:**
 Using this to send out to a large number of people who are not in your contacts list can result in Apple banning you from imessage, or getting your apple ID deactivated if a large number of recipients are reporting you as spam. 
 For experimental purposes only - or controlled use cases where getting reported as spam is not a concern
 
